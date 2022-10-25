@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import feign.FeignException;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.slf4j.Logger;
@@ -95,18 +96,13 @@ public class UsersServiceImpl implements UsersService {
 
 		UserDto userDto = new ModelMapper().map(userEntity, UserDto.class);
 
-        /*
-        String albumsUrl = String.format(environment.getProperty("albums.url"), userId);
+		List<AlbumResponseModel> albumsList = null;
 
-        ResponseEntity<List<AlbumResponseModel>> albumsListResponse = restTemplate.exchange(albumsUrl, HttpMethod.GET, null, new ParameterizedTypeReference<List<AlbumResponseModel>>() {
-        });
-        List<AlbumResponseModel> albumsList = albumsListResponse.getBody();
-        */
-		List<AlbumResponseModel> albumsList = albumsServiceClient.getAlbums(userId);
-
-//        logger.info("Before calling albums Microservice");
-//        List<AlbumResponseModel> albumsList = albumsServiceClient.getAlbums(userId);
-//        logger.info("After calling albums Microservice");
+		try {
+			albumsList = albumsServiceClient.getAlbums(userId);
+		}catch (FeignException e){
+			logger.error(e.getLocalizedMessage());
+		}
 
 		userDto.setAlbums(albumsList);
 

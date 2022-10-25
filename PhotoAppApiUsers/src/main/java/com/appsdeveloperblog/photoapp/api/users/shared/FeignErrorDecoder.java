@@ -1,4 +1,3 @@
-/*
 package com.appsdeveloperblog.photoapp.api.users.shared;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,4 +40,3 @@ public class FeignErrorDecoder implements ErrorDecoder {
 	}
 
 }
-*/

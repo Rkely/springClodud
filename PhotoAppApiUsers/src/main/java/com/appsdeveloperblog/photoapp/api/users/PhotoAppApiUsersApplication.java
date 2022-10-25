@@ -1,5 +1,7 @@
 package com.appsdeveloperblog.photoapp.api.users;
 
+import com.appsdeveloperblog.photoapp.api.users.shared.FeignErrorDecoder;
+import feign.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -33,34 +35,34 @@ public class PhotoAppApiUsersApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PhotoAppApiUsersApplication.class, args);
 	}
-	
+
 	@Bean
 	public BCryptPasswordEncoder bCryptPasswordEncoder()
 	{
 		return new BCryptPasswordEncoder();
 	}
-	
+
+	@Bean
+	//@Profile("!production")
+	Logger.Level feignDefaultLoggerLevel()
+	{
+		return Logger.Level.FULL;
+	}
 	/*@Bean
 	@LoadBalanced
 	public RestTemplate getRestTemplate()
 	{
 		return new RestTemplate();
 	}
-	
+
 	@Bean
 	@Profile("production")
 	Logger.Level feignLoggerLevel()
 	{
 		return Logger.Level.NONE;
 	}
-	
-	@Bean
-	@Profile("!production")
-	Logger.Level feignDefaultLoggerLevel()
-	{
-		return Logger.Level.FULL;
-	}
-	
+
+
 	@Bean
 	@Profile("production")
 	public String createProductionBean() {
@@ -82,11 +84,11 @@ public class PhotoAppApiUsersApplication {
 		return "Development bean";
 	}
 	*/
-	/*
-	@Bean
-	public FeignErrorDecoder getFeignErrorDecoder()
-	{
-		return new FeignErrorDecoder();
-	} */
+
+//	@Bean
+//	public FeignErrorDecoder getFeignErrorDecoder()
+//	{
+//		return new FeignErrorDecoder();
+//	}
 
 }
