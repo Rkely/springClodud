@@ -68,12 +68,12 @@ public class UserDto implements Serializable {
 		this.encryptedPassword = encryptedPassword;
 	}
 
-//	public List<AlbumResponseModel> getAlbums() {
-//		return albums;
-//	}
-//
-//	public void setAlbums(List<AlbumResponseModel> albums) {
-//		this.albums = albums;
-//	}
+	public List<AlbumResponseModel> getAlbums() {
+		return albums;
+	}
+
+	public void setAlbums(List<AlbumResponseModel> albums) {
+		this.albums = albums;
+	}
 
 }

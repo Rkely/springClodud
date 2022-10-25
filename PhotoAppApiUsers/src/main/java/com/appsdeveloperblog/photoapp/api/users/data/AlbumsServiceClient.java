@@ -1,4 +1,3 @@
-/*
 package com.appsdeveloperblog.photoapp.api.users.data;
 
 import java.util.ArrayList;
@@ -59,4 +58,3 @@ class AlbumsServiceClientFallback implements AlbumsServiceClient {
 	}
 
 }
-*/

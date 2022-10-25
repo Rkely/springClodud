@@ -32,21 +32,20 @@ public class UsersServiceImpl implements UsersService {
 
 	UsersRepository usersRepository;
 	BCryptPasswordEncoder bCryptPasswordEncoder;
-	//RestTemplate restTemplate;
 	Environment environment;
-//	AlbumsServiceClient albumsServiceClient;
+    AlbumsServiceClient albumsServiceClient;
 
 	Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	public UsersServiceImpl(UsersRepository usersRepository,
 			BCryptPasswordEncoder bCryptPasswordEncoder,
-		//	AlbumsServiceClient albumsServiceClient,
+		     AlbumsServiceClient albumsServiceClient,
 			Environment environment)
 	{
 		this.usersRepository = usersRepository;
 		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
-		//this.albumsServiceClient = albumsServiceClient;
+		this.albumsServiceClient = albumsServiceClient;
 		this.environment = environment;
 	}
 
@@ -92,9 +91,9 @@ public class UsersServiceImpl implements UsersService {
 	public UserDto getUserByUserId(String userId) {
 
         UserEntity userEntity = usersRepository.findByUserId(userId);
-        if(userEntity == null) throw new UsernameNotFoundException("User not found");
+		if(userEntity == null) throw new UsernameNotFoundException("User not found");
 
-        UserDto userDto = new ModelMapper().map(userEntity, UserDto.class);
+		UserDto userDto = new ModelMapper().map(userEntity, UserDto.class);
 
         /*
         String albumsUrl = String.format(environment.getProperty("albums.url"), userId);
@@ -103,12 +102,13 @@ public class UsersServiceImpl implements UsersService {
         });
         List<AlbumResponseModel> albumsList = albumsListResponse.getBody();
         */
+		List<AlbumResponseModel> albumsList = albumsServiceClient.getAlbums(userId);
 
 //        logger.info("Before calling albums Microservice");
 //        List<AlbumResponseModel> albumsList = albumsServiceClient.getAlbums(userId);
 //        logger.info("After calling albums Microservice");
 
-	//	userDto.setAlbums(albumsList);
+		userDto.setAlbums(albumsList);
 
 		return userDto;
 	}
