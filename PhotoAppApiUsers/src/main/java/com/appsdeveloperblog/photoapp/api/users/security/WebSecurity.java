@@ -33,7 +33,8 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
 		http.authorizeRequests().antMatchers(HttpMethod.POST, "/**")
-				.access("hasIpAddress(\"192.168.1.17\") or hasIpAddress(\"127.0.0.1\")")
+				//.access("hasIpAddress(\"192.168.1.17\") or hasIpAddress(\"127.0.0.1\")")
+				.access("hasIpAddress(\"127.0.0.1\")")
 				.antMatchers(environment.getProperty("api.users.actuator.url.path")).permitAll()
 				.and()
 		.addFilter(getAuthenticationFilter());

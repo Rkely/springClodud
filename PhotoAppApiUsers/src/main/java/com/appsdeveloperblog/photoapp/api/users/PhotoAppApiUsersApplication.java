@@ -1,8 +1,14 @@
 package com.appsdeveloperblog.photoapp.api.users;
 
+import com.appsdeveloperblog.photoapp.api.users.data.UserEntity;
+import com.appsdeveloperblog.photoapp.api.users.data.UsersRepository;
 import com.appsdeveloperblog.photoapp.api.users.shared.FeignErrorDecoder;
+import com.appsdeveloperblog.photoapp.api.users.shared.UserDto;
 import feign.Logger;
+import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -11,6 +17,9 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.env.Environment;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import javax.annotation.Resource;
+import java.util.UUID;
 //import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 //import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 ////import org.springframework.cloud.openfeign.EnableFeignClients;
@@ -27,7 +36,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableDiscoveryClient
 @EnableFeignClients
 //@EnableCircuitBreaker
-public class PhotoAppApiUsersApplication {
+public class PhotoAppApiUsersApplication //implements CommandLineRunner
+ {
 
 	@Autowired
 	Environment environment;
@@ -48,6 +58,28 @@ public class PhotoAppApiUsersApplication {
 	{
 		return Logger.Level.FULL;
 	}
+
+	@Autowired
+	BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Resource
+	UsersRepository usersRepository;
+//	@Override
+//	public void run(String... args) throws Exception {
+//		UserDto userDetails = new UserDto();
+//		userDetails.setPassword("123456");
+//		userDetails.setEmail("test123test@gmail.com");
+//		userDetails.setFirstName("iiis");
+//		userDetails.setLastName("lll");
+//		userDetails.setUserId(UUID.randomUUID().toString());
+//		userDetails.setEncryptedPassword(bCryptPasswordEncoder.encode(userDetails.getPassword()));
+//
+//		ModelMapper modelMapper = new ModelMapper();
+//		modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
+//
+//		UserEntity userEntity = modelMapper.map(userDetails, UserEntity.class);
+//
+//		usersRepository.save(userEntity);
+//	}
 	/*@Bean
 	@LoadBalanced
 	public RestTemplate getRestTemplate()

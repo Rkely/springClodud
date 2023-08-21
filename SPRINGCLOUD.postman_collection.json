@@ -1,0 +1,447 @@
+{
+	"info": {
+		"_postman_id": "3a6f836e-85ee-4326-8d68-6045f85afd78",
+		"name": "SPRINGCLOUD",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10053273"
+	},
+	"item": [
+		{
+			"name": "http://localhost:8082/USERS-WS/users/status/check",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true,
+					"accept-encoding": true,
+					"user-agent": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiI0MGE2NDZiNC1jZjdmLTRkM2EtOGY5Ny0xM2FjNjg0ZTNjNzQiLCJleHAiOjE2NjYwNDczNDB9.RG_zcZAsf43lIyaoyBrfgIyWZUkgzLJIOQBBgvkN4iPMRi6OxRYRPFSG3KjDfyCuT0uIQtRN2lLg2NoPHdp2Qw",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://192.168.1.17:8082/users-ws/users/status/check",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"17"
+					],
+					"port": "8082",
+					"path": [
+						"users-ws",
+						"users",
+						"status",
+						"check"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"set environment variable\", function () {\r",
+							"userId = pm.response.headers.get(\"userId\");\r",
+							"   if (userId !== undefined) {\r",
+							"      pm.environment.set(\"userId\", userId);\r",
+							"   }\r",
+							"\r",
+							"   token = pm.response.headers.get(\"token\");\r",
+							"   if (token !== undefined) {\r",
+							"      pm.environment.set(\"token\", token);\r",
+							"   }\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"test123test@gmail.com\",\r\n    \"password\" :\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.1.17:8082/users-ws/users/login",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"17"
+					],
+					"port": "8082",
+					"path": [
+						"users-ws",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "REGISTER",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"set environment variable\", function () {\r",
+							"userId = pm.response.headers.get(\"userId\");\r",
+							"   if (userId !== undefined) {\r",
+							"      pm.environment.set(\"userId\", userId);\r",
+							"   }\r",
+							"\r",
+							"   token = pm.response.headers.get(\"token\");\r",
+							"   if (token !== undefined) {\r",
+							"      pm.environment.set(\"token\", token);\r",
+							"   }\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"test123test@gmail.com\",\r\n    \"password\" :\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8082/users-ws/users",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8082",
+					"path": [
+						"users-ws",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "bus-refresh",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"set environment variable\", function () {\r",
+							"userId = pm.response.headers.get(\"userId\");\r",
+							"   if (userId !== undefined) {\r",
+							"      pm.environment.set(\"userId\", userId);\r",
+							"   }\r",
+							"\r",
+							"   token = pm.response.headers.get(\"token\");\r",
+							"   if (token !== undefined) {\r",
+							"      pm.environment.set(\"token\", token);\r",
+							"   }\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"test123test@gmail.com\",\r\n    \"password\" :\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.1.17:8082/actuator/bus-refresh",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"17"
+					],
+					"port": "8082",
+					"path": [
+						"actuator",
+						"bus-refresh"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\" : \"issa\",\r\n    \"lastName\" : \"telly\",\r\n    \"email\" : \"test123test@gmail.com\",\r\n    \"password\" :\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.1.17:8082/users-ws/users",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"17"
+					],
+					"port": "8082",
+					"path": [
+						"users-ws",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "userDetailAlbums",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\" : \"issa\",\r\n    \"lastName\" : \"telly\",\r\n    \"email\" : \"test123test@gmail.com\",\r\n    \"password\" :\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.1.17:8082/users-ws/users/{{userId}}/",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"17"
+					],
+					"port": "8082",
+					"path": [
+						"users-ws",
+						"users",
+						"{{userId}}",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "circuitbreaker",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\" : \"issa\",\r\n    \"lastName\" : \"telly\",\r\n    \"email\" : \"test123test@gmail.com\",\r\n    \"password\" :\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.1.17:8082/users-ws/users/{{userId}}/",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"17"
+					],
+					"port": "8082",
+					"path": [
+						"users-ws",
+						"users",
+						"{{userId}}",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "zipkin",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"firstName\" : \"issa\",\r\n    \"lastName\" : \"telly\",\r\n    \"email\" : \"test123test@gmail.com\",\r\n    \"password\" :\"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.1.17:8082/users-ws/users",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"17"
+					],
+					"port": "8082",
+					"path": [
+						"users-ws",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PhotoAppAPIConfigServer",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		}
+	]
+}
